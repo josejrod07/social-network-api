@@ -1,2 +1,2 @@
-# Social Media API NOSQL Backend
+# Social Media API NoSQL Backend
 
