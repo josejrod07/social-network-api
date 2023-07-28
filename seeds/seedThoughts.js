@@ -1,4 +1,3 @@
-// seedThoughts.js
 const { Thought } = require('../models');
 
 const thoughtData = [
@@ -31,10 +30,12 @@ const thoughtData = [
 const seedThoughtData = async () => {
   try {
     // Insert new thought data
+    await Thought.deleteMany({});
+
+    // Insert new thought data
     await Thought.insertMany(thoughtData);
 
     console.log('Thought data seeded successfully');
-    process.exit(0);
   } catch (err) {
     console.log(err);
   }

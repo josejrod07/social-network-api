@@ -1,17 +1,12 @@
+const db = require('../config/connection');
 const seedUserData = require('./seedUsers');
 const seedThoughtData = require('./seedThoughts');
 
-const seedAllData = async () => {
-  try {
-    // Call the seeding functions for User and Thought data
-    await seedUserData();
-    await seedThoughtData();
-
-    console.log('Data seeding complete');
-    process.exit(0);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-seedAllData();
+db.once('open', async () => {
+        await seedThoughtData();
+        await seedUserData();
+    
+        console.log('Data seeded');
+    
+        process.exit(0);
+});
