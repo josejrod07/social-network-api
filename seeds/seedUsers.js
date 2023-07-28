@@ -1,5 +1,6 @@
 
 const { User } = require('../models');
+const { Thought } = require('../models');
 
 const userData = [
   {
@@ -54,11 +55,24 @@ const userData = [
 
 const seedUserData = async () => {
   try {
+    // Delete all users
+    await User.deleteMany({});
+
+    // Correctly assign thoughts to users
+    const thoughts = await Thought.find({});
+
+    userData.forEach(async (user) => {
+        const newThoughts = thoughts.filter((thought) => {
+            return thought.username === user.username;
+        });
+
+        user.thoughts = newThoughts;
+    });
+
     // Insert new user data
     await User.insertMany(userData);
 
-    console.log('User data seeded successfully.');
-    process.exit(0);
+    console.log('User data seeded successfully');
   } catch (err) {
     console.log(err);
   }
