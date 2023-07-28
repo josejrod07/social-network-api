@@ -1,4 +1,3 @@
-// seedThoughts.js
 const { Thought } = require('../models');
 
 const thoughtData = [
