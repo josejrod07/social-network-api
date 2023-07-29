@@ -43,7 +43,7 @@ const thoughtController = {
         return res.status(404).json({ message: 'Thought created but no user with this id' });
       }
 
-      res.json({ message: 'Thought created' });
+      res.json(thoughtDb);
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -127,7 +127,7 @@ const thoughtController = {
         return res.status(404).json({ message: 'No thought associated with this id' });
       }
 
-      res.json(thoughtDb);
+      res.json({ message: 'Reaction deleted' });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
